@@ -15,7 +15,7 @@ given CommandLineParser.FromString[(List[Int], List[Int])] with
     }
   }
 
-@main def solve(args: (List[Int], List[Int])): Unit = {
+@main def day1(args: (List[Int], List[Int])): Unit = {
   val (listA, listB) = args
 
   val answer1 = listA.sorted.zip(listB.sorted)
