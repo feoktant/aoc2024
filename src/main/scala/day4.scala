@@ -3,14 +3,14 @@ package io.feoktant
 import scala.io.Source
 import scala.util.Using
 
-def parse(value: String): Array[Array[Char]] =
+def parse4(value: String): Array[Array[Char]] =
   Using.resource(Source.fromResource(value))(_.getLines().map(_.toCharArray).toArray)
 
 type Word4 = ((Int, Int), (Int, Int), (Int, Int), (Int, Int))
 type XWord = ((Int, Int), (Int, Int), (Int, Int), (Int, Int), (Int, Int))
 
 @main def day4(args: String*): Unit =
-  val input = parse(args(0))
+  val input = parse4(args(0))
 
   def words(row: Int, col: Int): Seq[Word4] = {
     Seq(
