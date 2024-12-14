@@ -58,5 +58,27 @@ given CommandLineParser.FromString[Day8Input] with
   val answer1 = antennas.view.values.flatMap { points =>
     permutations(points).flatMap((x,y) => getAntinodes(x, y))
   }.toSet.size
-
   println(answer1)
+
+  def getResonantAntinodes(p1: (Int, Int), p2: (Int, Int)): List[(Int, Int)] =
+    val ((x1, y1), (x2, y2)) = if (p1._1 < p2._1) (p1, p2) else (p2, p1)
+    val xDiff = x1 - x2
+    val yDiff = y1 - y2
+    val thX = if (xDiff < 0) 0 else x
+    val thY = if (yDiff < 0) 0 else y
+
+    val l1 = ((x1 to(thX, xDiff)) zip (y1 to(thY, yDiff))).toList
+    val l2 = ((x2 to(thX, -xDiff)) zip (y2 to(thY, -yDiff))).toList
+    l1 ::: l2
+
+//  antennas.foreach(println)
+//  println("--")
+//  antennas.view.values.map { points => permutations(points) }.foreach(println)
+//  println("--")
+  println {
+    getResonantAntinodes((2, 2), (4, 4))
+  }
+//  val answer2 = antennas.view.values.flatMap { points =>
+//    permutations(points).flatMap((x, y) => getResonantAntinodes(x, y))
+//  }.toSet.size
+//  println(answer2)
