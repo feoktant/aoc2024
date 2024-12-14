@@ -40,7 +40,7 @@ given CommandLineParser.FromString[Day6Input] with
 @main def day6(input: Day6Input): Unit =
   val Day6Input(theMap, guardPos) = input
   val indices = theMap.indices.flatMap(x => theMap(x).indices.map(x -> _)).toSet
-  val hashPoints = (theMap.zipWithIndex.collect:
+  val hashPoints = (theMap.zipWithIndex.collect: // this doesn't work
     case (arr, x) if arr.contains('#') =>  x -> arr.indexOf('#')).toSet
 
   def getPath(start: GuardPos, obstacle: Option[(Int, Int)] = None): Option[List[GuardPos]] =
